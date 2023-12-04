@@ -9,6 +9,8 @@ import maria.incyberspace.test.databinding.FragmentABinding
 import maria.incyberspace.test.databinding.FragmentBBinding
 
 class FragmentB : Fragment() {
+
+    private val router = CiceroneNavigation.router
     private val binding get() = _binding!!
     private var _binding: FragmentBBinding? = null
 
@@ -20,6 +22,21 @@ class FragmentB : Fragment() {
         _binding = FragmentBBinding.inflate(inflater, container, false)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setText()
+        router.sendResult("FragA", StringsSource.randomText())
+    }
+
+    private fun getArgs() = requireArguments().getString("Text")
+
+    private fun setText() {
+        with (binding) {
+            changedInFragBTextView.text = getArgs()
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

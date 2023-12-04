@@ -20,6 +20,19 @@ class FragmentA : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setText()
+    }
+
+    private fun getArgs() = requireArguments().getString("FragA")
+
+    private fun setText() {
+        with (binding) {
+            changedInFragATextView.text = getArgs()
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

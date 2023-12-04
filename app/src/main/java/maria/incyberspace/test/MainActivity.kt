@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var isFragmentB = false
+    private var textFromFragB = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,13 +27,20 @@ class MainActivity : AppCompatActivity() {
         with (binding) {
             switchFragmentsButton.setOnClickListener {
                 isFragmentB = if (isFragmentB) {
-                    startFragment()
+                    startFragment(Screens.fragmentA(textFromFragB))
                     false
                 } else {
-                    startFragment(Screens.fragmentB())
+                    getTextFromFragB()
+                    startFragment(Screens.fragmentB(StringsSource.randomText()))
                     true
                 }
             }
+        }
+    }
+
+    private fun getTextFromFragB() {
+        router.setResultListener("FragA") {
+            textFromFragB = it as String
         }
     }
 
