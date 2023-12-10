@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import maria.incyberspace.test.databinding.FragmentABinding
+import androidx.fragment.app.viewModels
 import maria.incyberspace.test.databinding.FragmentBBinding
 
 class FragmentB : Fragment() {
 
-    private val router = CiceroneNavigation.router
     private val binding get() = _binding!!
+    private val viewModel: FragmentBViewModel by viewModels()
     private var _binding: FragmentBBinding? = null
 
     override fun onCreateView(
@@ -26,7 +26,7 @@ class FragmentB : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setText()
-        router.sendResult("FragA", StringsSource.randomText())
+        viewModel.sendTextToFragmentA()
     }
 
     private fun getArgs() = requireArguments().getString("Text")
@@ -36,7 +36,6 @@ class FragmentB : Fragment() {
             changedInFragBTextView.text = getArgs()
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

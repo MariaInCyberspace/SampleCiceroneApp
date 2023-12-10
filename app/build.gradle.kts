@@ -39,6 +39,9 @@ android {
 }
 
 dependencies {
+    val activity_version = "1.8.1"
+    val fragment_version = "1.6.2"
+    val lifecycle_version = "2.6.2"
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -49,6 +52,12 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation("androidx.fragment:fragment-ktx:1.6.2")
+
+    implementation("androidx.activity:activity-ktx:$activity_version")
+    implementation("androidx.fragment:fragment-ktx:$fragment_version")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
 
     implementation("com.github.terrakok:cicerone:7.1")
 }
